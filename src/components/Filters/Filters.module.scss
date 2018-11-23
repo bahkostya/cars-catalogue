@@ -1,0 +1,11 @@
+@import 'styles/_variables.scss';
+
+.container {
+  padding: $spacing-large;
+  border: 2px solid $grey-light;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}

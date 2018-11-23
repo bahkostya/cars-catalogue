@@ -1,0 +1,15 @@
+@import 'styles/_variables.scss';
+
+.container {
+  padding: $spacing-large;
+  display: flex;
+}
+
+.sidebar {
+  flex: 1 1 33.33%;
+  margin-right: $spacing-large;
+}
+
+.mainContent {
+  flex: 1 1 66.66%;
+}

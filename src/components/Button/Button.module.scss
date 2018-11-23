@@ -1,0 +1,24 @@
+@import 'styles/_variables.scss';
+
+.container {
+  border: none;
+  border-radius: 2px;
+  background: $orange-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 128px;
+  height: 32px;
+  padding: 0 $spacing-small;
+  font-size: $font-size-medium;
+  color: #fff;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 1;
+    background-color: $orange-dark;
+  }
+}
