@@ -3,6 +3,7 @@
 .container {
   padding: $spacing-large;
   display: flex;
+  max-width: 1200px;
 }
 
 .sidebar {

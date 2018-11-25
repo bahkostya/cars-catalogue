@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import 'react-dropdown/style.css';
 
-import styles from './Home.module.scss';
 import { Filters } from 'components';
+import styles from './Home.module.scss';
 
 class Home extends Component {
   render() {

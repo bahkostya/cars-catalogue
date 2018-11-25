@@ -3,7 +3,7 @@
 .container {
   border: none;
   border-radius: 2px;
-  background: $orange-light;
+  background: $clr-orange-light;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,6 +19,6 @@
 
   &:active {
     opacity: 1;
-    background-color: $orange-dark;
+    background-color: $clr-orange-dark;
   }
 }

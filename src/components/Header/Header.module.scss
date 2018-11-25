@@ -1,0 +1,33 @@
+@import 'styles/_variables.scss';
+
+.container {
+  height: 80px;
+  padding: 0 $spacing-medium;
+  border-bottom: 1px solid $clr-grey-light;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 160px;
+  height: auto;
+  margin: 0 $spacing-medium;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  margin: 0 $spacing-medium;
+  text-decoration: none;
+  color: $clr-grey-dark;
+  font-size: $font-size-medium;
+
+  &:hover {
+    color: $clr-orange-light;
+  }
+}

@@ -2,10 +2,15 @@
 
 .container {
   padding: $spacing-large;
-  border: 2px solid $grey-light;
+  border: 1px solid $clr-grey-light;
 }
 
 .button {
   display: flex;
   justify-content: flex-end;
+  margin-top: $spacing-large;
+}
+
+.dropdown {
+  margin-bottom: $spacing-medium;
 }

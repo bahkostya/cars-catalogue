@@ -1,2 +1,58 @@
+@import 'styles/_variables.scss';
+
+$option-height: 32px;
+
 .container {
+  font-size: $font-size-small;
+}
+
+.select {
+  font-size: $font-size-medium;
+  margin-top: $spacing-small;
+}
+
+:global {
+  .Dropdown-control {
+    height: $option-height;
+    padding: 0 $spacing-medium;
+    display: flex;
+    align-items: center;
+    border-color: $clr-grey-light;
+    border-radius: 2px;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  .Dropdown-option {
+    padding: 0 $spacing-medium;
+    height: $option-height;
+    display: flex;
+    align-items: center;
+  }
+  .Dropdown-option {
+    color: $clr-grey-dark;
+
+    &:hover {
+      color: $clr-white;
+      background-color: $clr-orange-light;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $clr-grey-light;
+    }
+  }
+  .Dropdown-arrow {
+    border-color: $clr-grey-light transparent transparent;
+  }
+  .Dropdown-menu {
+    border-color: $clr-grey-light;
+    box-shadow: none;
+    border-radius: 2px;
+    margin-top: $spacing-small;
+  }
+
+  .is-open .Dropdown-arrow {
+    border-color: transparent transparent $clr-grey-light;
+  }
 }
