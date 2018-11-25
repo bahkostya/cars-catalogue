@@ -1,6 +1,11 @@
 @import 'styles/_variables.scss';
 
 .container {
+  position: relative;
+  min-height: 100vh;
+}
+.main {
   margin: 0 auto;
   max-width: 1200px;
+  padding-bottom: 80px;
 }

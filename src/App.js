@@ -1,20 +1,21 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { Home, Details } from './pages';
-import { Header } from 'components';
+import { Home, Details } from 'pages';
+import { Header, Footer } from 'components';
 
 import styles from './App.module.scss';
 
 const App = () => (
   <Router>
-    <Fragment>
+    <div className={styles.container}>
       <Header />
-      <div className={styles.container}>
+      <div className={styles.main}>
         <Route exact path="/" component={Home} />
         <Route path="/details/:id" component={Details} />
       </div>
-    </Fragment>
+      <Footer />
+    </div>
   </Router>
 );
 
