@@ -14,3 +14,27 @@
 .mainContent {
   flex: 1 1 66.66%;
 }
+
+.header {
+  margin-bottom: $spacing-large;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: $font-size-large;
+  font-weight: 700;
+  margin: 0 0 $spacing-medium;
+}
+
+.subTitle {
+  font-size: $font-size-large;
+  margin: 0;
+}
+
+.sortDropdown {
+  flex: 0 1 250px;
+}
+
+.list {
+}

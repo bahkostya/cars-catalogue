@@ -1,0 +1,39 @@
+@import 'styles/_variables.scss';
+
+.container {
+  padding: $spacing-medium;
+  margin-bottom: $spacing-medium;
+  border: 1px solid $clr-grey-light;
+  display: flex;
+}
+
+.image {
+  object-fit: cover;
+  width: 90px;
+  height: 72px;
+}
+
+.content {
+  margin-left: $spacing-large;
+}
+
+.title {
+  font-size: $font-size-large;
+  font-weight: 700;
+  margin: 0 0 $spacing-medium;
+}
+
+.description {
+  font-size: $font-size-medium;
+  margin: 0 0 $spacing-medium;
+}
+
+.viewMore {
+  font-size: $font-size-medium;
+  color: $clr-orange-light;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

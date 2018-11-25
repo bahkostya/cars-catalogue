@@ -1,0 +1,26 @@
+@import 'styles/_variables.scss';
+
+.container {
+  padding: $spacing-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  font-size: $font-size-medium;
+  margin: 0 $spacing-medium;
+}
+
+.link {
+  font-size: $font-size-medium;
+  color: $clr-orange-light;
+  text-decoration: none;
+  margin: 0 $spacing-medium;
+  border: none;
+  background: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -3,5 +3,7 @@ import Filters from './Filters/Filters';
 import Button from './Button/Button';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import ListItem from './ListItem/ListItem';
+import Pagination from './Pagination/Pagination';
 
-export { Filters, Dropdown, Button, Header, Footer };
+export { Filters, Dropdown, Button, Header, Footer, ListItem, Pagination };

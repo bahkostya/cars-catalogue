@@ -1,14 +1,9 @@
 @import './_variables.scss';
+@import '~reset-css/sass/_reset.scss';
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $clr-grey-dark;
-}
-
-* {
-  box-sizing: border-box;
 }

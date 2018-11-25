@@ -29,9 +29,12 @@ $option-height: 32px;
     height: $option-height;
     display: flex;
     align-items: center;
-  }
-  .Dropdown-option {
     color: $clr-grey-dark;
+
+    &.is-selected {
+      color: $clr-orange-light;
+      background-color: $clr-white;
+    }
 
     &:hover {
       color: $clr-white;
