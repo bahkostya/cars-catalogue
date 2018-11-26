@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import 'react-dropdown/style.css';
 
 import { Filters, Dropdown, ListItem, Pagination } from 'components';
-import { getAllCars } from './actions';
+import { getAllCars, getColors, getManufacturers, setFilters } from './actions';
 
-import 'react-dropdown/style.css';
 import styles from './Home.module.scss';
 
 const sortOptions = [
@@ -15,7 +15,11 @@ const sortOptions = [
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getAllCars(1);
+    const { getColors, getAllCars, getManufacturers, currentPage } = this.props;
+
+    getAllCars(currentPage);
+    getColors();
+    getManufacturers();
   }
 
   renderCarsList = ({
@@ -52,7 +56,7 @@ class Home extends Component {
   };
 
   handleFetchNextPage = () => {
-    const { currentPage, getAllCars, totalPageCount } = this.props;
+    const { currentPage, getAllCars } = this.props;
     getAllCars(currentPage + 1);
   };
 
@@ -61,12 +65,41 @@ class Home extends Component {
     getAllCars(totalPageCount);
   };
 
+  handleFilter = ({ currentManufacturer, currentColor }) => {
+    const { currentPage, getAllCars, setFilters } = this.props;
+
+    setFilters({ currentManufacturer, currentColor });
+    getAllCars(currentPage);
+  };
+
+  handleSort = sortBy => {
+    const { currentPage, setFilters, getAllCars } = this.props;
+
+    setFilters({ sortBy });
+    getAllCars(currentPage);
+  };
+
   render() {
-    const { cars, currentPage, totalPageCount } = this.props;
+    const {
+      cars,
+      currentPage,
+      totalPageCount,
+      colors,
+      manufacturers,
+      currentColor,
+      currentManufacturer,
+      sortBy,
+    } = this.props;
     return (
       <main role="main" className={styles.container}>
         <aside className={styles.sidebar}>
-          <Filters />
+          <Filters
+            onSubmit={this.handleFilter}
+            colors={colors}
+            manufacturers={manufacturers}
+            currentManufacturer={currentManufacturer}
+            currentColor={currentColor}
+          />
         </aside>
         <section className={styles.mainContent}>
           <div className={styles.header}>
@@ -81,7 +114,8 @@ class Home extends Component {
               <Dropdown
                 label="Sort by"
                 options={sortOptions}
-                value={sortOptions[0]}
+                value={sortBy}
+                onChange={this.handleSort}
               />
             </div>
           </div>
@@ -104,9 +138,14 @@ const mapStateToProps = state => ({
   cars: state.cars.data,
   currentPage: state.cars.searchData.currentPage,
   totalPageCount: state.cars.searchData.totalPageCount,
+  colors: state.filters.colors,
+  manufacturers: state.filters.manufacturers,
+  currentColor: state.filters.currentColor,
+  currentManufacturer: state.filters.currentManufacturer,
+  sortBy: state.filters.sortBy,
 });
 
 export default connect(
   mapStateToProps,
-  { getAllCars }
+  { getAllCars, getColors, getManufacturers, setFilters }
 )(Home);

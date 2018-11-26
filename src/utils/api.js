@@ -8,16 +8,32 @@ export async function fetchAllCars(
 ) {
   const fetchOptions = {
     method: 'GET',
-    // headers: {
-    //   'Content-Type': 'application/json',
-    // },
-    // mode: 'cors',
   };
 
   const response = await fetch(
     `${API_PREFIX}/cars?manufacturer=${manufacturer}&color=${color}&sort=${sort}&page=${page}`,
     fetchOptions
   );
+
+  return response.json();
+}
+
+export async function fetchColorsFilters() {
+  const fetchOptions = {
+    method: 'GET',
+  };
+
+  const response = await fetch(`${API_PREFIX}/colors`, fetchOptions);
+
+  return response.json();
+}
+
+export async function fetchManufacturersFilters() {
+  const fetchOptions = {
+    method: 'GET',
+  };
+
+  const response = await fetch(`${API_PREFIX}/manufacturers`, fetchOptions);
 
   return response.json();
 }
