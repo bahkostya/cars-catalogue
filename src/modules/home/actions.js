@@ -1,13 +1,9 @@
 import { fetchAllCars } from 'utils/api';
-import { fetchColorsFilters, fetchManufacturersFilters } from '../../utils/api';
+import { setFilters } from '../filters/actions';
 
 export const FETCH_CARS_DATA_REQUEST = 'FETCH_CARS_DATA_REQUEST';
 export const FETCH_CARS_DATA_FAILURE = 'FETCH_CARS_DATA_FAILURE';
 export const FETCH_CARS_DATA_SUCCESS = 'FETCH_CARS_DATA_SUCCESS';
-export const FETCH_FILTERS_REQUEST = 'FETCH_FILTERS_REQUEST';
-export const FETCH_FILTERS_FAILURE = 'FETCH_FILTERS_FAILURE';
-export const FETCH_FILTERS_SUCCESS = 'FETCH_FILTERS_SUCCESS';
-export const SET_FILTERS = 'SET_FILTERS';
 
 export const fetchCarsDataRequest = () => ({
   type: FETCH_CARS_DATA_REQUEST,
@@ -18,15 +14,15 @@ export const fetchCarsDataFailure = error => ({
   error,
 });
 
-export const fetchCarsDataSuccess = (data, searchData) => ({
+export const fetchCarsDataSuccess = (data, totalPageCount) => ({
   type: FETCH_CARS_DATA_SUCCESS,
   payload: {
     data,
-    searchData,
+    totalPageCount,
   },
 });
 
-export const getAllCars = page => async (dispatch, getState) => {
+export const getAllCars = (currentPage = 1) => async (dispatch, getState) => {
   dispatch(fetchCarsDataRequest());
 
   const {
@@ -37,77 +33,20 @@ export const getAllCars = page => async (dispatch, getState) => {
 
   try {
     const { cars, totalPageCount } = await fetchAllCars(
-      page,
+      currentPage,
       currentManufacturer.value,
       currentColor.value,
       sortBy.value
     );
 
-    const searchData = {
-      currentPage: page,
-      totalPageCount,
-    };
-
-    dispatch(fetchCarsDataSuccess(cars, searchData));
+    dispatch(setFilters({ currentPage }));
+    dispatch(fetchCarsDataSuccess(cars, totalPageCount));
   } catch (error) {
     dispatch(fetchCarsDataFailure(error));
   }
 };
 
-export const fetchFiltersRequest = () => ({
-  type: FETCH_FILTERS_REQUEST,
-});
-
-export const fetchFiltersFailure = error => ({
-  type: FETCH_FILTERS_FAILURE,
-  error,
-});
-
-export const fetchFiltersSuccess = (data, filterName) => ({
-  type: FETCH_FILTERS_SUCCESS,
-  payload: {
-    data,
-    filterName,
-  },
-});
-
-export const getColors = () => async (dispatch, getState) => {
-  dispatch(fetchFiltersRequest());
-
-  try {
-    const { colors } = await fetchColorsFilters();
-
-    dispatch(
-      fetchFiltersSuccess(
-        colors.map(value => ({ value, label: value })),
-        'colors'
-      )
-    );
-  } catch (error) {
-    dispatch(fetchFiltersFailure(error));
-  }
+export const fetchFilteredCars = filtersData => dispatch => {
+  dispatch(setFilters(filtersData));
+  dispatch(getAllCars());
 };
-
-export const getManufacturers = () => async (dispatch, getState) => {
-  dispatch(fetchFiltersRequest());
-
-  try {
-    const { manufacturers } = await fetchManufacturersFilters();
-
-    dispatch(
-      fetchFiltersSuccess(
-        manufacturers.map(({ name }) => ({ value: name, label: name })),
-        'manufacturers'
-      )
-    );
-  } catch (error) {
-    dispatch(fetchFiltersFailure(error));
-  }
-};
-
-export const setFilters = data => ({
-  type: SET_FILTERS,
-  payload: {
-    data,
-  },
-});

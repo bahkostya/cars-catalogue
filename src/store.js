@@ -1,7 +1,8 @@
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import { cars, filters } from 'modules/home/reducers';
+import cars from 'modules/home/reducer';
+import filters from 'modules/filters/reducer';
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

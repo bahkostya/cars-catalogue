@@ -5,5 +5,15 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ListItem from './ListItem/ListItem';
 import Pagination from './Pagination/Pagination';
+import ContentLoader from './ContentLoader/ContentLoader';
 
-export { Filters, Dropdown, Button, Header, Footer, ListItem, Pagination };
+export {
+  Filters,
+  Dropdown,
+  Button,
+  Header,
+  Footer,
+  ListItem,
+  Pagination,
+  ContentLoader,
+};

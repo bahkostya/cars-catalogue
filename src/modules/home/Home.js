@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import 'react-dropdown/style.css';
 
 import { Filters, Dropdown, ListItem, Pagination } from 'components';
-import { getAllCars, getColors, getManufacturers, setFilters } from './actions';
+import { getAllCars, fetchFilteredCars } from './actions';
+import { getColors, getManufacturers } from '../filters/actions';
 
 import styles from './Home.module.scss';
+import ContentLoader from '../../components/ContentLoader/ContentLoader';
 
 const sortOptions = [
   { value: '', label: 'None' },
@@ -22,7 +24,39 @@ class Home extends Component {
     getManufacturers();
   }
 
-  renderCarsList = ({
+  handleFetchFirstPage = () => {
+    const { getAllCars } = this.props;
+    getAllCars();
+  };
+
+  handleFetchPrevPage = () => {
+    const { currentPage, getAllCars } = this.props;
+    getAllCars(currentPage - 1);
+  };
+
+  handleFetchNextPage = () => {
+    const { currentPage, getAllCars } = this.props;
+    getAllCars(currentPage + 1);
+  };
+
+  handleFetchLastPage = () => {
+    const { getAllCars, totalPageCount } = this.props;
+    getAllCars(totalPageCount);
+  };
+
+  handleFilter = ({ currentManufacturer, currentColor }) => {
+    const { fetchFilteredCars } = this.props;
+
+    fetchFilteredCars({ currentManufacturer, currentColor });
+  };
+
+  handleSort = sortBy => {
+    const { fetchFilteredCars } = this.props;
+
+    fetchFilteredCars({ sortBy });
+  };
+
+  renderCarItem = ({
     stockNumber,
     manufacturerName,
     modelName,
@@ -45,39 +79,10 @@ class Home extends Component {
     );
   };
 
-  handleFetchFirstPage = () => {
-    const { getAllCars } = this.props;
-    getAllCars(1);
-  };
-
-  handleFetchPrevPage = () => {
-    const { currentPage, getAllCars } = this.props;
-    getAllCars(currentPage - 1);
-  };
-
-  handleFetchNextPage = () => {
-    const { currentPage, getAllCars } = this.props;
-    getAllCars(currentPage + 1);
-  };
-
-  handleFetchLastPage = () => {
-    const { getAllCars, totalPageCount } = this.props;
-    getAllCars(totalPageCount);
-  };
-
-  handleFilter = ({ currentManufacturer, currentColor }) => {
-    const { currentPage, getAllCars, setFilters } = this.props;
-
-    setFilters({ currentManufacturer, currentColor });
-    getAllCars(currentPage);
-  };
-
-  handleSort = sortBy => {
-    const { currentPage, setFilters, getAllCars } = this.props;
-
-    setFilters({ sortBy });
-    getAllCars(currentPage);
-  };
+  renderContentLoader = () =>
+    Array(10)
+      .fill()
+      .map((v, i) => <ListItem key={i} isLoading={true} />);
 
   render() {
     const {
@@ -89,7 +94,9 @@ class Home extends Component {
       currentColor,
       currentManufacturer,
       sortBy,
+      isContentLoading,
     } = this.props;
+
     return (
       <main role="main" className={styles.container}>
         <aside className={styles.sidebar}>
@@ -119,7 +126,11 @@ class Home extends Component {
               />
             </div>
           </div>
-          <div className={styles.list}>{cars.map(this.renderCarsList)}</div>
+          <div className={styles.list}>
+            {isContentLoading
+              ? this.renderContentLoader()
+              : cars.map(this.renderCarItem)}
+          </div>
           <Pagination
             total={totalPageCount}
             currentPage={currentPage}
@@ -136,16 +147,17 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   cars: state.cars.data,
-  currentPage: state.cars.searchData.currentPage,
-  totalPageCount: state.cars.searchData.totalPageCount,
+  totalPageCount: state.cars.totalPageCount,
   colors: state.filters.colors,
+  currentPage: state.filters.currentPage,
   manufacturers: state.filters.manufacturers,
   currentColor: state.filters.currentColor,
   currentManufacturer: state.filters.currentManufacturer,
   sortBy: state.filters.sortBy,
+  isContentLoading: state.cars.isLoading,
 });
 
 export default connect(
   mapStateToProps,
-  { getAllCars, getColors, getManufacturers, setFilters }
+  { getAllCars, getColors, getManufacturers, fetchFilteredCars }
 )(Home);

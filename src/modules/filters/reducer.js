@@ -1,53 +1,9 @@
 import {
-  FETCH_CARS_DATA_REQUEST,
-  FETCH_CARS_DATA_FAILURE,
-  FETCH_CARS_DATA_SUCCESS,
   FETCH_FILTERS_FAILURE,
   FETCH_FILTERS_REQUEST,
   FETCH_FILTERS_SUCCESS,
   SET_FILTERS,
 } from './actions';
-
-const initialCarsState = {
-  isLoading: false,
-  error: null,
-  data: [],
-  searchData: {
-    totalPageCount: 0,
-    currentPage: 1,
-  },
-};
-
-export function cars(state = initialCarsState, action) {
-  switch (action.type) {
-    case FETCH_CARS_DATA_REQUEST:
-      return {
-        ...state,
-        error: null,
-        isLoading: true,
-      };
-
-    case FETCH_CARS_DATA_FAILURE:
-      return {
-        ...state,
-        error: action.error,
-        isLoading: false,
-        searchData: initialCarsState.searchData,
-      };
-
-    case FETCH_CARS_DATA_SUCCESS:
-      return {
-        ...state,
-        error: null,
-        isLoading: false,
-        data: action.payload.data,
-        searchData: action.payload.searchData,
-      };
-
-    default:
-      return state;
-  }
-}
 
 const defaultColorFilter = {
   value: '',
@@ -59,7 +15,7 @@ const defaultManufacturersFilter = {
   label: 'All manufacturers',
 };
 
-const initialFiltersState = {
+const initialState = {
   colors: [defaultColorFilter],
   manufacturers: [defaultManufacturersFilter],
   isLoading: false,
@@ -67,9 +23,10 @@ const initialFiltersState = {
   currentColor: defaultColorFilter,
   currentManufacturer: defaultManufacturersFilter,
   sortBy: { value: '', label: 'None' },
+  currentPage: 1,
 };
 
-export function filters(state = initialFiltersState, action) {
+export default function filters(state = initialState, action) {
   switch (action.type) {
     case FETCH_FILTERS_REQUEST:
       return {

@@ -37,3 +37,41 @@
     text-decoration: underline;
   }
 }
+
+.contentFixture {
+  font-size: 0;
+  background-color: $clr-grey-light;
+  max-width: 500px;
+  width: 100%;
+}
+
+.loader {
+  composes: container;
+
+  .image {
+    background-color: $clr-grey-light;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .title,
+  .description,
+  .viewMore {
+    font-size: 0;
+    background-color: $clr-grey-light;
+    height: 20px;
+  }
+
+  .description {
+    height: 14px;
+  }
+
+  .viewMore {
+    height: 14px;
+    max-width: 100px;
+    display: block;
+  }
+}

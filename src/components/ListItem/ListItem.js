@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom';
 
 import styles from './ListItem.module.scss';
 
-const ListItem = ({ imgSrc, title, description, id }) => (
-  <div className={styles.container}>
-    <img src={imgSrc} className={styles.image} alt={title} />
+const ListItem = ({ imgSrc, title, description, id, isLoading }) => (
+  <div className={isLoading ? styles.loader : styles.container}>
+    {isLoading ? (
+      <div className={styles.image} />
+    ) : (
+      <img src={imgSrc} className={styles.image} alt={title} />
+    )}
     <div className={styles.content}>
       <p className={styles.title}>{title}</p>
       <p className={styles.description}>{description}</p>
@@ -15,5 +19,9 @@ const ListItem = ({ imgSrc, title, description, id }) => (
     </div>
   </div>
 );
+
+ListItem.defaultProps = {
+  isLoading: false,
+};
 
 export default ListItem;
