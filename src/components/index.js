@@ -5,7 +5,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ListItem from './ListItem/ListItem';
 import Pagination from './Pagination/Pagination';
-import ContentLoader from './ContentLoader/ContentLoader';
+import NotFound from './NotFound/NotFound';
 
 export {
   Filters,
@@ -15,5 +15,5 @@ export {
   Footer,
   ListItem,
   Pagination,
-  ContentLoader,
+  NotFound,
 };

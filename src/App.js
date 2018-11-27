@@ -1,8 +1,8 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 
 import { Home, Details } from 'modules';
-import { Header, Footer } from 'components';
+import { Header, Footer, NotFound } from 'components';
 
 import styles from './App.module.scss';
 import { history } from 'utils/router';
@@ -12,8 +12,11 @@ const App = () => (
     <div className={styles.container}>
       <Header />
       <div className={styles.main}>
-        <Route exact path="/" component={Home} />
-        <Route path="/details/:id" component={Details} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/details/:id" component={Details} />
+          <Route component={NotFound} />
+        </Switch>
       </div>
       <Footer />
     </div>

@@ -1,0 +1,36 @@
+@import 'styles/_variables.scss';
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.logo {
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: $spacing-large;
+}
+
+.heading {
+  font-size: $font-size-xlarge;
+  font-weight: 700;
+  margin-bottom: $spacing-large;
+}
+
+.text {
+  font-size: $font-size-large;
+  margin-bottom: $spacing-large;
+}
+
+.link {
+  color: $clr-orange-light;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

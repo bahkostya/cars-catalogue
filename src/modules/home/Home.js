@@ -34,7 +34,7 @@ class Home extends PureComponent {
       manufacturer = '',
       color = '',
       sort = '',
-      page,
+      page = 1,
     } = queryString.parse(search);
 
     fetchFilteredCars(
@@ -115,6 +115,8 @@ class Home extends PureComponent {
       sortBy,
       isContentLoading,
     } = this.props;
+
+    console.log(cars);
 
     return (
       <main role="main" className={styles.container}>
