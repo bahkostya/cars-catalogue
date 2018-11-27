@@ -13,7 +13,7 @@ const Dropdown = ({ label, options, placeholder, value, onChange }) => (
       options={options}
       placeholder={placeholder}
       onChange={onChange}
-      value={value}
+      value={options.find(option => option.value === value)}
     />
   </label>
 );

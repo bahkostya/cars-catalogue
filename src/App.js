@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 
 import { Home, Details } from 'modules';
 import { Header, Footer } from 'components';
 
 import styles from './App.module.scss';
+import { history } from 'utils/router';
 
 const App = () => (
-  <Router>
+  <Router history={history}>
     <div className={styles.container}>
       <Header />
       <div className={styles.main}>

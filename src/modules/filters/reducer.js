@@ -20,9 +20,9 @@ const initialState = {
   manufacturers: [defaultManufacturersFilter],
   isLoading: false,
   error: null,
-  currentColor: defaultColorFilter,
-  currentManufacturer: defaultManufacturersFilter,
-  sortBy: { value: '', label: 'None' },
+  currentColor: '',
+  currentManufacturer: '',
+  sortBy: '',
   currentPage: 1,
 };
 

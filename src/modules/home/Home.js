@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import queryString from 'query-string';
 import 'react-dropdown/style.css';
 
 import { Filters, Dropdown, ListItem, Pagination } from 'components';
 import { getAllCars, fetchFilteredCars } from './actions';
-import { getColors, getManufacturers } from '../filters/actions';
+import { getColors, getManufacturers, setFilters } from '../filters/actions';
 
 import styles from './Home.module.scss';
-import ContentLoader from '../../components/ContentLoader/ContentLoader';
 
 const sortOptions = [
   { value: '', label: 'None' },
@@ -15,14 +15,33 @@ const sortOptions = [
   { value: 'desc', label: 'Mileage - Descending' },
 ];
 
-class Home extends Component {
+class Home extends PureComponent {
   componentDidMount() {
-    const { getColors, getAllCars, getManufacturers, currentPage } = this.props;
+    const { getColors, getManufacturers } = this.props;
 
-    getAllCars(currentPage);
+    this.parseQueryString();
     getColors();
     getManufacturers();
   }
+
+  parseQueryString = () => {
+    const {
+      location: { search },
+      fetchFilteredCars,
+    } = this.props;
+
+    const {
+      manufacturer = '',
+      color = '',
+      sort = '',
+      page,
+    } = queryString.parse(search);
+
+    fetchFilteredCars(
+      { sortBy: sort, currentManufacturer: manufacturer, currentColor: color },
+      parseInt(page)
+    );
+  };
 
   handleFetchFirstPage = () => {
     const { getAllCars } = this.props;
@@ -50,10 +69,10 @@ class Home extends Component {
     fetchFilteredCars({ currentManufacturer, currentColor });
   };
 
-  handleSort = sortBy => {
+  handleSort = ({ value }) => {
     const { fetchFilteredCars } = this.props;
 
-    fetchFilteredCars({ sortBy });
+    fetchFilteredCars({ sortBy: value });
   };
 
   renderCarItem = ({
@@ -159,5 +178,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllCars, getColors, getManufacturers, fetchFilteredCars }
+  { getAllCars, getColors, getManufacturers, fetchFilteredCars, setFilters }
 )(Home);

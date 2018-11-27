@@ -6,23 +6,34 @@ import Dropdown from '../Dropdown/Dropdown';
 import styles from './Filters.module.scss';
 
 class Filters extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = {
+    currentColor: '',
+    currentManufacturer: '',
+  };
 
-    this.state = {
-      currentColor: props.currentColor,
-      currentManufacturer: props.currentManufacturer,
-    };
+  componentDidUpdate(prevProps) {
+    const { currentColor, currentManufacturer } = this.props;
+
+    if (currentColor && !prevProps.currentColor) {
+      this.setState({
+        currentColor,
+      });
+    }
+    if (currentManufacturer && !prevProps.currentManufacturer) {
+      this.setState({
+        currentManufacturer,
+      });
+    }
   }
 
-  handleChangeColorChange = currentColor =>
+  handleChangeColorChange = ({ value }) =>
     this.setState({
-      currentColor,
+      currentColor: value,
     });
 
-  handleChangeManufacturer = currentManufacturer =>
+  handleChangeManufacturer = ({ value }) =>
     this.setState({
-      currentManufacturer,
+      currentManufacturer: value,
     });
 
   handleFilterClick = () => {

@@ -1,17 +1,17 @@
 const API_PREFIX = process.env.API_PREFIX || 'http://localhost:3001';
 
-export async function fetchAllCars(
-  page = 1,
-  manufacturer = 'Fiat',
-  color = '',
-  sort = ''
-) {
+export async function fetchAllCars({
+  currentPage = 1,
+  currentManufacturer = '',
+  currentColor = '',
+  sortBy = '',
+}) {
   const fetchOptions = {
     method: 'GET',
   };
 
   const response = await fetch(
-    `${API_PREFIX}/cars?manufacturer=${manufacturer}&color=${color}&sort=${sort}&page=${page}`,
+    `${API_PREFIX}/cars?manufacturer=${currentManufacturer}&color=${currentColor}&sort=${sortBy}&page=${currentPage}`,
     fetchOptions
   );
 
