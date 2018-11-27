@@ -6,6 +6,7 @@ import Footer from './Footer/Footer';
 import ListItem from './ListItem/ListItem';
 import Pagination from './Pagination/Pagination';
 import NotFound from './NotFound/NotFound';
+import ActionBlock from './ActionBlock/ActionBlock';
 
 export {
   Filters,
@@ -16,4 +17,5 @@ export {
   ListItem,
   Pagination,
   NotFound,
+  ActionBlock,
 };

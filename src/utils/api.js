@@ -37,3 +37,16 @@ export async function fetchManufacturersFilters() {
 
   return response.json();
 }
+
+export async function fetchCarByStockNumber(stockNumber) {
+  const fetchOptions = {
+    method: 'GET',
+  };
+
+  const response = await fetch(
+    `${API_PREFIX}/cars/${stockNumber}`,
+    fetchOptions
+  );
+
+  return response.json();
+}

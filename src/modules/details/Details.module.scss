@@ -1,0 +1,42 @@
+@import 'styles/_variables.scss';
+
+.container {
+}
+
+.image {
+  height: 350px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.mainContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-large;
+  display: flex;
+}
+
+.info {
+  flex: 1 1 60%;
+  margin-right: $spacing-large;
+}
+
+.save {
+  flex: 1 1 40%;
+}
+
+.title {
+  font-size: $font-size-xlarge;
+  font-weight: 700;
+  margin-bottom: $spacing-large;
+}
+
+.description {
+  font-size: $font-size-large;
+  margin-bottom: $spacing-large;
+}
+
+.text {
+  font-size: $font-size-medium;
+  line-height: 24px;
+}

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
-import Button from '../Button/Button';
 import Dropdown from '../Dropdown/Dropdown';
+import ActionBlock from '../ActionBlock/ActionBlock';
 
 import styles from './Filters.module.scss';
 
@@ -50,7 +50,7 @@ class Filters extends PureComponent {
     const { colors, manufacturers } = this.props;
 
     return (
-      <div className={styles.container}>
+      <ActionBlock onClick={this.handleFilterClick} buttonLabel="Filter">
         <div className={styles.dropdown}>
           <Dropdown
             label="Color"
@@ -67,10 +67,7 @@ class Filters extends PureComponent {
             onChange={this.handleChangeManufacturer}
           />
         </div>
-        <div className={styles.button}>
-          <Button onClick={this.handleFilterClick}>Filter</Button>
-        </div>
-      </div>
+      </ActionBlock>
     );
   }
 }
