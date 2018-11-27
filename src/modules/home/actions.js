@@ -69,5 +69,5 @@ export const updateUrl = ({
 
   const searchString = queryString.stringify(searchObject);
 
-  history.push(`/?${searchString}`);
+  history.replace(`/?${searchString}`);
 };
