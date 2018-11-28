@@ -116,8 +116,6 @@ class Home extends PureComponent {
       isContentLoading,
     } = this.props;
 
-    console.log(cars);
-
     return (
       <main role="main" className={styles.container}>
         <aside className={styles.sidebar}>
