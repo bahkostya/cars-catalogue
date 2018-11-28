@@ -7,7 +7,7 @@ import styles from './NotFound.module.scss';
 
 const NotFound = () => (
   <div className={styles.container}>
-    <img src={logo} className={styles.logo} alt="Auto1" />
+    <img src={logo} className={styles.logo} alt="Outa1" />
     <h1 className={styles.heading}>404 - Not Found</h1>
     <p className={styles.text}>
       Sorry, the page you are looking for does not exist.

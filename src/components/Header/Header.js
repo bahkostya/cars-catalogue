@@ -9,10 +9,10 @@ import { history } from '../../utils/router';
 const Logo = () =>
   history.location.pathname !== '/' ? (
     <Link to="">
-      <img src={logo} className={styles.logo} alt="Auto1" />
+      <img src={logo} className={styles.logo} alt="Outa1" />
     </Link>
   ) : (
-    <img src={logo} className={styles.logo} alt="Auto1" />
+    <img src={logo} className={styles.logo} alt="Outa1" />
   );
 
 const Header = () => (
